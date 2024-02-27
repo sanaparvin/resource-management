@@ -1,0 +1,132 @@
+.profile-container {
+    margin-right: 5%;
+    margin-left: 15%;
+    margin-top: 7%;
+}
+
+.profile-title {
+    display: flex;
+    color: #000000;
+    font-size: 40px;
+    justify-content: center;
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+.pro-image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.pro-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image {
+    font-size: 150px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.profile-data {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 20px;
+    width: 500px;
+    line-height: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+    border: 1px solid #454783;
+    border-radius: 15px;
+    margin-top: 60px;
+}
+
+.profile-data p {
+    font-size: 20px;
+}
+
+.profile-data a {
+    margin-left: 20px;
+    color: #8387F5;
+}
+
+.profile-data a:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}
+
+.phno {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.password-btn button {
+    width: 100px;
+    height: 40px;
+    color: white;
+    margin-top: 20px;
+    background-color: #8387F5;
+    border-radius: 5px;
+    transition: transform 0.5 ease;
+}
+
+.modal {
+    margin-top: 30px;
+}
+
+.modal-content {
+    background-color: white;
+    border: 2px solid #454783;
+    border-radius: 10px;
+    margin-left: 33%;
+    margin-right: 33%;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.modal-content div {
+    line-height: 200%;
+}
+
+.password-btn button:hover {
+    background-color: #454783;
+    color: rgb(192, 192, 192);
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.close {
+    display: flex;
+    justify-content: left;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.close:hover {
+    cursor: pointer;
+    color: #454783;
+}
+
+.pass-box {
+    display: flex;
+    gap: 20px;
+}

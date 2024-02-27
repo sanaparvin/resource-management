@@ -1,0 +1,159 @@
+/* Admin.css */
+
+.container-ad {
+    margin-right: 5%;
+    margin-left: 15%;
+    margin-top: 7%;
+}
+
+.search-container-ad {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-ad {
+    margin: 20px;
+    background: transparent;
+    justify-content: center;
+}
+
+.search-bar-ad input[type="text"]::placeholder {
+    color: #000000;
+    font-size: 20px;
+    /* Placeholder text color */
+}
+
+.search-container-ad input[type="text"] {
+    padding: 13px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #000000;
+    border: none;
+    width: 500px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+
+.search-container-ad input:hover {
+    transform: translate3d(20%);
+}
+
+.search-icon {
+    background: transparent;
+}
+
+.search-container-ad button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-container-ad button:hover {
+    color: #8387F5;
+}
+
+
+/* User card styles */
+
+.user-cards {
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.user-card {
+    background-image: url(../../Assets/profile.png);
+    background-size: cover;
+    width: 380px;
+    height: 280px;
+    border: 1px solid #535C91;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-info {
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.user-info div {
+    margin-bottom: 5px;
+}
+
+.slider {
+    position: absolute;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    bottom: 0;
+    right: 0;
+}
+
+.user-card label.switch {
+    display: block;
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+.user-card input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.user-card label.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.user-card label.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.user-card input[type="checkbox"]:checked+.slider {
+    background-color: #2196F3;
+}
+
+.user-card input[type="checkbox"]:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.error-msge {
+    display: flex;
+    padding-top: 100px;
+    justify-content: center;
+}

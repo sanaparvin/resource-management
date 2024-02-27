@@ -1,0 +1,139 @@
+/* MyUpload.css */
+
+.my-upload-container {
+    margin-right: 5%;
+    margin-left: 15%;
+    margin-top: 7%;
+}
+
+.title-up {
+    display: flex;
+    color: #000000;
+    font-size: 40px;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+.search-container-up {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-up {
+    margin: 20px;
+    background: transparent;
+    justify-content: center;
+}
+
+.search-bar-up input[type="text"]::placeholder {
+    color: #000000;
+    font-size: 20px;
+    /* Placeholder text color */
+}
+
+.search-container-up input[type="text"] {
+    padding: 13px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #000000;
+    border: none;
+    width: 500px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+
+.search-container-up input:hover {
+    transform: translate3d(20%);
+}
+
+.search-icon {
+    background: transparent;
+}
+
+.search-container-up button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-container-up button:hover {
+    color: #8387F5;
+}
+
+.resource-cards {
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.resource-card {
+    background-image: url(../../Assets/file.png);
+    background-size: cover;
+    width: 380px;
+    height: 280px;
+    border: 1px solid #535C91;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-info {
+    position: absolute;
+    margin-bottom: 10px;
+    bottom: 0;
+    margin-left: 20px;
+}
+
+.button-container button {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    margin-right: 10px;
+    width: 60px;
+    height: 30px;
+    color: white;
+    background-color: #8387F5;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: transform 0.5 ease;
+    margin-bottom: 15px;
+}
+
+.button-container button:hover {
+    background-color: #454783;
+    color: rgb(192, 192, 192);
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.info {
+    font-size: 13px;
+}
+
+.resource-name {
+    font-weight: bold;
+}
+
+.resource-card a {
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.resource-card a:hover {
+    text-decoration: underline;
+    color: navy;
+}
