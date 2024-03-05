@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 .home-page {
     display: flex;
     flex-direction: column;
@@ -33,7 +34,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 100px;
+    margin-left: 70px;
+    gap: 50px;
 }
 
 .search-bar {
@@ -48,7 +50,7 @@
     font-size: 16px;
     color: #000000;
     border: none;
-    width: 500px;
+    width: 620px;
     border: 0;
     outline: none;
     background: transparent;
@@ -96,11 +98,11 @@
 }
 
 .filter-select {
+    padding-right: 10px;
     padding-left: 0px;
-    align-items: center;
     text-align: center;
     font-size: 16px;
-    border: 1px solid #ffffff;
+    border: 1px solid black;
     border-radius: 5px;
     background-color: #ffffff;
     color: #000000;
@@ -134,7 +136,7 @@
     /* Set the icon color */
     cursor: pointer;
     /* Change cursor to pointer on hover */
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .reset-filter .reset-icon:hover {
@@ -148,7 +150,8 @@
     align-items: center;
     flex-direction: row;
     position: relative;
-    right: 120px;
+    gap: 15px;
+    margin-left: -120px;
 }
 
 .calendar-icon {
@@ -192,6 +195,13 @@
     /* Day background color on hover */
 }
 
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
 
 /* ResourceItem.css */
 
@@ -200,22 +210,21 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-left: 400px;
+    margin-left: 460px;
     overflow-wrap: break-word;
     font-size: 15px;
     gap: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
 h2 {
     font-weight: bolder;
     justify-content: center;
     font-size: 40px;
-    font-family: 'Times New Roman', Times, serif;
-    text-decoration: underline;
+    font-family: 'Poppins', sans-serif;
     color: #00265a;
-    margin-right: -210px;
+    margin-right: -270px;
 }
 
 .card-body {
@@ -243,6 +252,7 @@ h2 {
     left: 0;
     width: 100%;
     background-color: #8387F5;
+    font-family: 'Poppins', sans-serif;
     color: white;
     padding-bottom: 5px;
     padding: 2px;
@@ -253,7 +263,7 @@ h2 {
 .initial-title {
     position: absolute;
     padding: 20px;
-    width: 100%;
+    width: 90%;
     bottom: 0;
     left: 0;
     margin-bottom: 0;
@@ -274,7 +284,7 @@ h2 {
     margin-bottom: 10px;
     color: #fdfdfd;
     position: relative;
-    padding-left: 10px;
+    padding-left: 20px;
     visibility: visible;
     /* Show card title initially */
 }
@@ -303,17 +313,15 @@ h2 {
     display: inline-block;
     font-size: 15px;
     text-decoration: none;
-    color: #000000;
+    color: #535C91;
     margin-top: 10px;
     padding-left: 20px;
+    padding-bottom: 10px;
+    transition: transform 0.5 ease;
 }
 
 .card-body a:hover {
-    text-decoration: underline;
-}
-
-.card-body a svg {
-    margin-right: 5px;
+    transform: scale(1.04);
 }
 
 .resources {
@@ -321,23 +329,157 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-left: 400px;
+    margin-left: 500px;
     overflow-wrap: break-word;
     font-size: 15px;
     gap: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
 .PR-title {
     display: flex;
     justify-content: center;
-    margin-left: 180px;
+    margin-left: 200px;
 }
 
+.no-rslts {
+    margin-left: 480px;
+}
 
-/* .resources img {
-    width: 130px;
-    height: 120px;
-    background-size: cover;
-} */
+.card-body button {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    height: 35px;
+    width: 40px;
+    justify-content: center;
+}
+
+.card-body button:hover {
+    cursor: pointer;
+    color: #8387F5;
+}
+
+.card-body a svg {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        height: auto;
+    }
+    .search-header {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .search-form {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    .search-form input[type="text"] {
+        padding: 13px;
+        padding-left: 10px;
+        font-size: 16px;
+        color: #000000;
+        border: none;
+        width: 85px;
+        border: 0;
+        outline: none;
+        background: transparent;
+        border-bottom: 1px solid black;
+    }
+    .PR-title {
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+        margin-right: 0px;
+    }
+    h2 {
+        font-weight: bolder;
+        justify-content: center;
+        font-size: 30px;
+        font-family: 'Poppins', sans-serif;
+        color: #00265a;
+        margin-right: -210px;
+    }
+    .search-bar input[type="text"] {
+        width: 230px;
+        max-width: 100%;
+        margin-left: 20px;
+    }
+    .filter {
+        margin-top: 20px;
+    }
+    .filters {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: -20px;
+        padding: 0;
+    }
+    .date-picker {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        right: 0;
+        gap: 0;
+        margin-top: 20px;
+    }
+    .react-datepicker__input-container input {
+        width: auto;
+        max-width: 100%;
+    }
+    .filter-select {
+        margin-right: 20px;
+    }
+    .reset-filter .reset-icon {
+        font-size: 1.2rem;
+        /* Adjust the icon size */
+        color: #333;
+        /* Set the icon color */
+        cursor: pointer;
+        /* Change cursor to pointer on hover */
+        padding-left: 30px;
+        margin-top: 20px;
+    }
+    .reset-filter .reset-icon {
+        padding-left: 0;
+    }
+    .no-rslts {
+        margin-left: 30px;
+        margin-top: 40px;
+    }
+    .card-body {
+        background-image: url(../../Assets/file-resp.png);
+        background-size: cover;
+        width: 300px;
+        height: 260px;
+        border: 1px solid #535C91;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s ease;
+    }
+    .popular-resources,
+    .resources {
+        margin-left: 57px;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './admin.css';
-import Header from '../header/header';
+import Header from '../../Components/header/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faCalendarAlt, faDownload, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faSearch  } from '@fortawesome/free-solid-svg-icons';
  
 function Admin() {
   const [query, setQuery] = useState('');
@@ -69,6 +69,7 @@ function Admin() {
     <div>
         <Header/>
         <div className='container-ad'>
+        <h2 className='admin-title'>Admin Settings</h2>
           <div className='search-container-ad'>
       <div className="search-bar-ad">
         <input
@@ -87,13 +88,13 @@ function Admin() {
         {searchResult.map((user) => (
           <div key={user.userid} className="user-card">
             <div className='user-info'>
-            <div>Username: {user.userName}</div>
+            <div className='user-card-name'> {user.userName}</div>
             <div>Email: {user.userEmail}</div>
             <div>Phone Number: {user.userPhno}</div>
             <div>Role: {user.isModerator ? 'Moderator' : 'Student'}
             </div>
             </div>
-            <div  className='slider'>
+            <div  className='slider' title="The toggle button is used to change the role of user to student and moderator">
             <label className="switch">
               <input
                 type="checkbox"

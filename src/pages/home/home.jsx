@@ -1,54 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import {useLocation} from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCalendarAlt, faDownload, faUndo } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import Header from '../header/header';
- 
+import Header from '../../Components/header/header';
+
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [filterOption, setFilterOption] = useState('all');
+    const [filterOption, setFilterOption] = useState('type');
     const [selectedDate, setSelectedDate] = useState(null);
     const [resources, setResources] = useState([]);
     const [popularResources, setPopularResources] = useState([]);
-    // const location = useLocation();
-    // const searchParams = new URLSearchParams(location.search);
-    // const uid = searchParams.get("uid"); // Default role if not provided
- 
- 
- 
-    // console.log(uid);
-    
+    const [searched, setSearched] = useState(false); // Track whether a search has been performed
+
+
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
- 
- 
-  
- 
- 
+
+
     const handleFilterChange = (event) => {
-        const value = event.target.value;
-        // If "All" is selected, set filterOption to an empty string
-        // Otherwise, set it to the selected value
-        setFilterOption(value === "all" ? "" : value);
+        setFilterOption(event.target.value);
     };
-    
- 
+
+
     const handleSearchSubmit = async (event) => {
-        event.preventDefault();
-    
+        if (event) {
+            event.preventDefault();
+        }
+ 
         try {
             let apiUrl = 'http://localhost:5000/userresources?';
-    
+ 
             if (searchQuery) {
                 apiUrl += `&resourceName=${searchQuery}`;
             }
-    
-            if (filterOption !== 'all') {
+ 
+            if (filterOption !== 'type' && filterOption !== 'all') {
                 apiUrl += `&resourceType=${filterOption}`;
             }
  
@@ -65,8 +55,8 @@ const Home = () => {
             // Ensure that the response has a user_resources property containing an array
             if (response.data && Array.isArray(response.data.response)) {
                 setResources(response.data.response);
+                setSearched(true); // Set searched to true when resources are found
             } else {
-                // If response does not have the expected structure, handle the error
                 console.error('Unexpected API response:', response);
                 setResources([]);
             }
@@ -75,9 +65,20 @@ const Home = () => {
             setResources([]);
         }
     };
- 
+
+
+    const handleDownload = async (resourceId) => {
+        try {
+            await axios.get(
+            `http://127.0.0.1:5000/download/${resourceId}`
+            );
+        } catch (error) {
+            console.error("Error downloading resource:", error);
+        }
+        };
+
      // Function to fetch popular resources
-     const fetchPopularResources = async () => {
+    const fetchPopularResources = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:5000/popularresources');
             setPopularResources(response.data.response);
@@ -86,23 +87,18 @@ const Home = () => {
             setPopularResources([]);
         }
     };
- 
+
     // Call fetchPopularResources when the component mounts
     useEffect(() => {
         fetchPopularResources();
     }, []);
 
-    const handleDownload = async (resourceId) => {
-        try {
-          await axios.get(
-            `http://127.0.0.1:5000/download/${resourceId}`
-          );
-        } catch (error) {
-          console.error("Error downloading resource:", error);
+    useEffect(() => {
+        if (filterOption !== 'type' || selectedDate !== null) {
+            handleSearchSubmit();
         }
-    };
- 
- 
+    }, [filterOption, selectedDate]);
+
     return (
         <div className="home-page">
             <Header />
@@ -120,8 +116,10 @@ const Home = () => {
                         <button type="submit" className='search-icon'><FontAwesomeIcon icon={faSearch}/></button>
                     </div>
                     </div>
+                    <div className='filters'>
                     <div className="filter">
                         <select className='filter-select' value={filterOption} onChange={handleFilterChange}>
+                            <option value="type">Type</option>
                             <option value="all">All</option>
                             <option value="Pdf">Pdf</option>
                             <option value="application/vnd.openxmlformats-officedocument.presentationml.presentation">Pptx</option>
@@ -137,62 +135,79 @@ const Home = () => {
                             placeholderText="Select Date"
                             dateFormat="yyyy-MM-dd"
                         />
+                        
+                        </div>
                         <div className="reset-filter">
                     <FontAwesomeIcon icon={faUndo} className='reset-icon' onClick={() => {
                         setSelectedDate(null);
-                        setFilterOption('all');
+                        setFilterOption('type');
+                        setSearchQuery('');
                     }} />
                     </div>
+
                     </div>
                 </form>
                 </div>
                 </div>
                 <div className='container'>
-                <div className="resources">
-                    {resources.map((resource, index) => (
-                        <div key={index} className="resource-item card">
-                            <div className="card-body">
-                                <h4 className="initial-title">{resource.resourceName}</h4>
-                                <div className="caption">
-                                    <h5 className="card-title">{resource.resourceName}</h5>
-                                    <p className="card-text">Resource Size: {resource.resourceSize}</p>
-                                    <p className="card-text">Date of Upload: {resource.dateOfUpload}</p>
-                                    <p className="card-text">Username: {resource.username}</p>
-                                    <a
-                                        href={resource.uploadFile}
-                                        onClick={() => handleDownload(resource.resourceid)}
-                                        download
-                                    >
-                                        <FontAwesomeIcon icon={faDownload} />
-                                        Download
-                                    </a>
-                                </div>
+                {searched && resources.length === 0 ? (
+                    <p className='no-rslts'>No resources found.</p>
+                ) : resources.length > 0 && (
+        <>
+            <h2 className='PR-title'>Searched Results</h2>
+            <div className="resources">
+                {resources.map((resource, index) => (
+                    <div key={index} className="resource-item card">
+                        <div className="card-body">
+                            <h4 className="initial-title">{resource.resourceName.length > 25 ? resource.resourceName.substring(0, 25) + '...' : resource.resourceName}</h4>
+                            <div className="caption">
+                                <h5 className="card-title">{resource.resourceName}</h5>
+                                <p className="card-text">Resource Size: {resource.resourceSize}</p>
+                                <p className="card-text">Date of Upload: {resource.dateOfUpload}</p>
+                                <p className="card-text">Uploaded by: {resource.username}</p>
                             </div>
+                            <a
+                                href={resource.uploadFile}
+                                onClick={() => handleDownload(resource.resourceId)}
+                                download
+                            >
+                                <div onClick={() => fetchPopularResources()}>
+                                    <button className='download-btn'>
+                                        <FontAwesomeIcon icon={faDownload} />
+                                    </button>
+                                </div>
+                            </a>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
+            </div>
+        </>
+    
+    )}
                 <h2 className='PR-title'>Popular Resources</h2>
                 <div className="popular-resources">
                         {popularResources.map((resource, index) => (
                             <div key={index} className="resource-item card">
                                     <div className="card-body">
  
-                                    <h4 className="initial-title">{resource.resourceName}</h4>
+                                    <h4 className="initial-title">{resource.resourceName.length > 25 ? resource.resourceName.substring(0, 25) + '...' : resource.resourceName}</h4>
                                     <div className="caption">
                                         <h5 className="card-title">{resource.resourceName}</h5>
                                         <p className="card-text">Date of Upload: {resource.dateOfUpload}</p>
                                         <p className="card-text">Downloads: {resource.noOfDownloads}</p>
-                                        <a 
-                                            href={resource.uploadFile}
-                                            onClick={() => handleDownload(resource.resourceId)}
-                                            download
-                                        >
-                                          <div onClick={() => fetchPopularResources()}>
-                                            <FontAwesomeIcon icon={faDownload} />
-                                            Download
-                                          </div>
-                                        </a>
                                         </div>
+                                        <a
+                                        href={resource.uploadFile}
+                                        onClick={() => handleDownload(resource.resourceId)}
+                                        download
+                                        >
+                                        <div onClick={() => fetchPopularResources()}>
+                                            <button className='download-btn'>
+                                            <FontAwesomeIcon icon={faDownload} />
+                                            </button>
+                                        </div>
+                                        </a>
+                                        
                                     </div>
                             </div>
                         ))}

@@ -1,9 +1,21 @@
 /* Admin.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 .container-ad {
     margin-right: 5%;
     margin-left: 15%;
     margin-top: 7%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-title {
+    display: flex;
+    color: #000000;
+    font-size: 40px;
+    justify-content: center;
+    font-weight: 800;
+    margin-right: 0;
+    margin-left: 60px;
 }
 
 .search-container-ad {
@@ -11,6 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 40px;
 }
 
 .search-bar-ad {
@@ -64,9 +77,10 @@
 /* User card styles */
 
 .user-cards {
-    gap: 20px;
+    gap: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 220px;
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
@@ -75,8 +89,8 @@
 .user-card {
     background-image: url(../../Assets/profile.png);
     background-size: cover;
-    width: 380px;
-    height: 280px;
+    width: 350px;
+    height: 260px;
     border: 1px solid #535C91;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
     border-radius: 20px;
@@ -93,6 +107,12 @@
 
 .user-info div {
     margin-bottom: 5px;
+}
+
+.user-card-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 19px;
 }
 
 .slider {
@@ -131,7 +151,7 @@
 
 .user-card label.switch .slider:before {
     position: absolute;
-    content: "";
+    content: "S";
     height: 26px;
     width: 26px;
     left: 4px;
@@ -140,6 +160,10 @@
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
 }
 
 .user-card input[type="checkbox"]:checked+.slider {
@@ -150,10 +174,85 @@
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+    content: "M";
+    background-color: white;
+    /* Color for Moderator */
+    color: #000000;
 }
 
 .error-msge {
     display: flex;
     padding-top: 100px;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .container-ad {
+        margin-right: 5%;
+        margin-left: 5%;
+        /* Adjust margins for smaller screens */
+        margin-top: 7%;
+    }
+    .admin-title {
+        font-size: 30px;
+        margin-top: 130px;
+        margin-right: 60px;
+        /* Decrease title font size for smaller screens */
+    }
+    .search-container-ad input[type="text"] {
+        width: 100%;
+        /* Make search input full width */
+    }
+    .user-cards {
+        margin-left: 35px;
+        margin-top: -30px;
+        /* Adjust margin for smaller screens */
+    }
+    .user-card {
+        background-image: url(../../Assets/profile-resp.png);
+        background-size: cover;
+        width: 300px;
+        height: 260px;
+        border: 1px solid #535C91;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .search-bar-ad {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .search-container-ad {
+        margin-left: 5px;
+    }
+    .slider {
+        bottom: -10px;
+        /* Adjust slider position for smaller screens */
+    }
+    .user-info {
+        margin-left: 20px;
+        /* Adjust margin for smaller screens */
+    }
+    .user-card label.switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+    }
+    .user-card label.switch .slider:before {
+        left: 2px;
+        /* Adjust slider knob position for smaller screens */
+        bottom: 2px;
+        width: 30px;
+        height: 30px;
+        /* Adjust slider knob position for smaller screens */
+    }
 }

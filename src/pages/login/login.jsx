@@ -1,5 +1,9 @@
+
 import React, { useState } from 'react';
 import Styles from './login.module.css'; // Import CSS file for custom styling
+import login from '../../Assets/login.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
  
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState('');
@@ -41,22 +45,22 @@ const Login = () => {
         }
     };
     
-    const handleSignup = async (e) => {
-      e.preventDefault();
-      setResponseMessage(''); // Clear response message before making a new signup attempt
-      try {
-          const response = await fetch('http://127.0.0.1:5000/users', {
-              method: 'POST',
-              headers: {
-              'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-              userName: signupName,
-              userEmail: signupEmail,
-              userPhno: signupPhone,
-              userPassword: signupPassword,
-              }),
-          });
+const handleSignup = async (e) => {
+    e.preventDefault();
+    setResponseMessage(''); // Clear response message before making a new signup attempt
+    try {
+        const response = await fetch('http://127.0.0.1:5000/users', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            userName: signupName,
+            userEmail: signupEmail,
+            userPhno: signupPhone,
+            userPassword: signupPassword,
+            }),
+        });
    
           const data = await response.json(); // Parse response body as JSON
           if (response.ok) {
@@ -93,7 +97,10 @@ const Login = () => {
     };
      
     return (
-        <div className={Styles.container}>
+            <div className={Styles.loginpage}>
+            <div className={Styles.loginbox}>
+            <div className={Styles.imgcontainer}><img src={login}/> </div>
+            <div className={Styles.container}>
             <div className={Styles.loginContainer}>
                 <div className={Styles.card}>
                     <h2>{showLogin ? 'Login' : 'Sign Up'}</h2>
@@ -124,7 +131,7 @@ const Login = () => {
                                     className={Styles.btnOutlineSecondary}
                                     onClick={toggleShowLoginPassword}
                                 >
-                                    {showLoginPassword ? 'Hide' : 'Show'}
+                                    <FontAwesomeIcon icon={showLoginPassword ? faEye : faEyeSlash} />
                                 </button>
                             </div>
                         </div>
@@ -171,7 +178,7 @@ const Login = () => {
                                 type="button"
                                 className={Styles.btnOutlineSecondary}
                                 onClick={toggleShowSignupPassword}
-                                >{showSignupPassword ? 'Hide' : 'Show'}
+                                ><FontAwesomeIcon icon={showSignupPassword ?  faEye : faEyeSlash} />
                             </button>
                             </div>
                         </div>
@@ -193,9 +200,16 @@ const Login = () => {
                         )}
                     </p>
                     </div>
+                    </div>
+                </div>
+                
                 </div>
                 </div>
             );
 };
  
 export default Login;
+ 
+ 
+ 
+ 

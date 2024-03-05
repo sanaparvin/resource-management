@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+.profile-container {
+    margin-right: 5%;
+    margin-left: 15%;
+    margin-top: 7%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-title {
+    display: flex;
+    color: #000000;
+    font-size: 40px;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+.pro-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-initial {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    font-size: 130px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #afb1ec;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.profile-data {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 20px;
+    width: 500px;
+    line-height: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(85, 85, 85, 0.08);
+    border: 1px solid #454783;
+    border-radius: 15px;
+    margin-top: 60px;
+}
+
+.profile-data p {
+    font-size: 20px;
+}
+
+.profile-data a {
+    margin-left: 20px;
+    color: #8387F5;
+}
+
+.profile-data a:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}
+
+.phno {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.password-btn button {
+    width: 100px;
+    height: 40px;
+    color: white;
+    margin-top: 20px;
+    background-color: #8387F5;
+    border-radius: 5px;
+    transition: transform 0.5 ease;
+}
+
+.modal-p {
+    position: fixed;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 200px;
+    /* Ensure the modal is above other content */
+    perspective: 1000px;
+    /* Add perspective to create 3D effect */
+}
+
+.change-icon {
+    font-size: 18px;
+}
+
+.modal-profile {
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F6FE;
+    padding: 20px;
+    justify-content: center;
+    align-self: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Add shadow for depth */
+    transition: transform 0.5s ease;
+    /* Add transition for smooth animation */
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black background */
+    z-index: 98;
+    /* Ensure it's below the modal */
+}
+
+.modal-functions {
+    padding: 10px;
+    padding-top: 30px;
+}
+
+.modal-profile div {
+    line-height: 250%;
+}
+
+.password-btn button:hover {
+    background-color: #454783;
+    color: rgb(192, 192, 192);
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    justify-content: left;
+    padding-top: 10px;
+    font-size: 30px;
+    top: 0;
+}
+
+.close:hover {
+    cursor: pointer;
+    color: #454783;
+}
+
+.pass-box {
+    display: flex;
+    gap: 10px;
+}
+
+.pass-box input[type="password" i] {
+    border: 1px solid black;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.sbmt-btn button {
+    font-size: 16px;
+    height: 30px;
+    background: #8387F5;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.7 ease;
+}
+
+.sbmt-btn button:hover {
+    transform: scale(1.05);
+    background-color: #454783;
+    color: white;
+}
+
+.check-box input[type='checkbox']:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        margin-right: 5%;
+        margin-left: 5%;
+        margin-top: 7%;
+    }
+    .profile-title {
+        font-size: 30px;
+        margin-top: 130px;
+    }
+    .pro-container {
+        flex-direction: column;
+    }
+    .profile-data {
+        width: 90%;
+        /* Adjust width for smaller screens */
+        margin-top: 100px;
+        margin-left: -2px;
+    }
+    .modal-p {
+        padding-left: 50px;
+        /* Adjust padding for smaller screens */
+    }
+    .profile-initial {
+        display: flex;
+        width: 150px;
+        height: 150px;
+        font-size: 110px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        background-color: #afb1ec;
+        border: 2px solid black;
+        border-radius: 100%;
+    }
+    .phno {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+    .modal-profile {
+        margin-right: 46px;
+    }
+    .pass-box {
+        align-items: end;
+    }
+    label {
+        line-height: 150%;
+    }
+    #newPhoneNumber {
+        height: 30px;
+        border-radius: 5px;
+    }
+}

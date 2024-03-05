@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import Header from "../header/header";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import Header from '../../Components/header/header';
 import "./profile.css"; // Import CSS file for styling
-
+import ToastMessage from '../../Components/ToastMessage/ToastMessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen} from '@fortawesome/free-solid-svg-icons';
+ 
 function Profile() {
   const uid = sessionStorage.getItem("uid");
   const [userData, setUserData] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const [option, setOption] = useState("password"); // Default option is password
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPhoneNumber, setNewPhoneNumber] = useState("");
   const [showPasswords, setShowPasswords] = useState(false);
   const [message, setMessage] = useState("");
-
+  const [toastMessage, setToastMessage] = useState('');
+ 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -26,17 +27,17 @@ function Profile() {
         console.error("Error fetching user data:", error);
       }
     };
-
+ 
     fetchUserData();
   }, [uid]);
-
+ 
   const handleChangeOption = (selectedOption) => {
     setOption(selectedOption);
-    setShowModal(true); // Show modal when option changes
+    setShowProfileModal(true); // Show modal when option changes
     // Clear old message when option changes
     setMessage("");
   };
-
+ 
   const handleChangePassword = async () => {
     try {
       const response = await fetch(
@@ -50,18 +51,18 @@ function Profile() {
         }
       );
       const data = await response.json();
-      setMessage(data.response);
+      setToastMessage(data.response);
       if (data.statuscode === 200) {
         // Clear input fields
         setOldPassword("");
         setNewPassword("");
-        setShowModal(false);
+        setShowProfileModal(false);
       }
     } catch (error) {
       console.error("Error updating password:", error);
     }
   };
-
+ 
   const handleChangePhoneNumber = async () => {
     try {
       const response = await fetch(
@@ -75,83 +76,89 @@ function Profile() {
         }
       );
       const data = await response.json();
-      setMessage(data.response);
+      setToastMessage(data.response);
       if (data.statuscode === 200) {
         // Clear input field
         setNewPhoneNumber("");
-        setShowModal(false);
+        setShowProfileModal(false);
       }
     } catch (error) {
       console.error("Error updating phone number:", error);
     }
   };
-
+ 
   return (
     <div>
       <Header />
-      <div className="profile-container">
+      <div className="profile-container ">
         <div className="profile-title">My Profile</div>
         
         <div className="pro-container">{userData && (
           <div className="profile-data">
             <div className="pro-image-box">
-          <FontAwesomeIcon icon={faUserAlt} className=" profile-image" />
+            <div className="profile-initial">{userData.userName[0].toUpperCase()}</div>
         </div>
             <h4 className="user-name"> {userData.userName}</h4>
-            <p>Email ID: {userData.userEmail}</p>
+            <p> <b>Email ID : </b>{userData.userEmail}</p>
             <div className="phno">
-              <p>Phone Number: {userData.userPhno}</p>
+              <p><b>Phone Number : </b>{userData.userPhno}</p>
               <a onClick={() => handleChangeOption("phonenumber")}>
-                Change
+              <FontAwesomeIcon icon={faPen} className='change-icon'/>
               </a>
             </div>
             <div className="password-btn">
               <button onClick={() => handleChangeOption("password")}>
-                Change Password
+                <b>Change Password</b>
               </button>
             </div>
           </div>
         )}</div>
-
-
+ 
+ 
         {message && <div className="message">{message}</div>}
-
-        {showModal && (
-          <div className="modal">
-              <div className="modal-content">
-              <span className="close" onClick={() => setShowModal(false)}>
+ 
+        {showProfileModal && (
+          <div className="modal-p show-modal">
+              <div className="modal-profile">
+              <span className="close" onClick={() => setShowProfileModal(false)}>
                 &times;
               </span>
+              <div className="modal-functions">
               {option === "password" && (
                 <div className="pass-box">
-                  <label htmlFor="oldPassword">Old Password:</label>
+                   <label htmlFor="oldPassword">Old Password:</label>
+                  
                   <input
                     type={showPasswords ? "text" : "password"}
                     id="oldPassword"
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
                   />
-                </div>
+                  </div>
+                
               )}
               <div className="pass-box">
-                <label htmlFor="newInput">
+                <label htmlFor="newPassword">
                   {option === "password" ? "New Password" : "New Phone Number"}:
                 </label>
-                <input
-                  type={
-                    option === "password" && showPasswords ? "text" : "text"
-                  }
-                  id="newInput"
-                  value={option === "password" ? newPassword : newPhoneNumber}
-                  onChange={(e) =>
-                    option === "password"
-                      ? setNewPassword(e.target.value)
-                      : setNewPhoneNumber(e.target.value)
-                  }
-                />
+                {option === "password" ? (
+                  <input
+                    type={showPasswords ? "text" : "password"}
+                    id="newPassword"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    id="newPhoneNumber"
+                    value={newPhoneNumber}
+                    onChange={(e) => setNewPhoneNumber(e.target.value)}
+                  />
+                )}
               </div>
               {option === "password" && (
-                <div>
+                <div className="check-box">
                   <input
                     type="checkbox"
                     id="showPasswords"
@@ -161,6 +168,7 @@ function Profile() {
                   <label htmlFor="showPasswords">Show</label>
                 </div>
               )}
+              <div className="sbmt-btn">
               <button
                 onClick={
                   option === "password"
@@ -170,12 +178,17 @@ function Profile() {
               >
                 Submit
               </button>
+              </div>
+            </div>
             </div>
           </div>
         )}
+        {showProfileModal && <div className="modal-overlay"></div>}
       </div>
+      {toastMessage && <ToastMessage message={toastMessage} onClose={() => setToastMessage('')} />}
+ 
     </div>
   );
 }
-
+ 
 export default Profile;

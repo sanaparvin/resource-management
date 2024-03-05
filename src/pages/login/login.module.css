@@ -1,0 +1,207 @@
+.loginpage {
+    margin-bottom: -60px;
+}
+
+.container {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: white;
+    overflow-y: hidden;
+}
+
+.loginContainer {
+    width: 400px;
+    padding: 60px;
+    padding-bottom: 70px;
+    border: 2px solid #8387F5;
+    border-radius: 25px;
+    background-color: #F6F6FE;
+}
+
+.loginbox {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.imgcontainer {
+    width: 50%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.imgcontainer img {
+    width: 100%;
+    height: 100%;
+}
+
+.card h2 {
+    font-weight: bolder;
+    font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: #00265a;
+    margin-left: 150px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.formLabel {
+    margin-bottom: 5px;
+    display: block;
+    font-size: 18px;
+}
+
+.formControl {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #8387F5;
+    border-radius: 15px;
+}
+
+.inputGroup {
+    position: relative;
+}
+
+.inputGroup button {
+    color: #000;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    /* Adjusted right spacing */
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.btnPrimary {
+    display: flex;
+    margin-top: 10px;
+    background-color: #8387F5;
+    font-size: 18px;
+    justify-content: center;
+    color: #fff;
+}
+
+.btnOutlineSecondary {
+    height: 35px;
+    width: 40px;
+    /* Adjusted width for eye icon button */
+    padding-left: 7px;
+    background-color: #8387F5;
+    border: 1px solid #8387F5;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+.btnOutlineSecondary:hover {
+    cursor: pointer;
+}
+
+.btnLink {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.btnLink:hover {
+    color: grey;
+}
+
+.alert {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.para {
+    margin-top: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(#8387F5, #ffffff);
+    }
+    .loginbox {
+        flex-direction: column;
+    }
+    .imgcontainer {
+        display: none;
+        /* Hide imgcontainer for smaller screens */
+    }
+    .loginContainer {
+        width: 80%;
+        padding: 20px;
+        /* Reduce padding for smaller screens */
+    }
+    .card {
+        margin-bottom: 30px;
+    }
+    .card h2 {
+        display: flex;
+        margin-left: 0;
+        margin-right: 5px;
+        justify-content: center;
+        /* Remove left margin for the heading */
+        text-align: center;
+        /* Align heading to center */
+    }
+    .formControl {
+        width: 93%;
+        /* Make form controls full width */
+    }
+    .inputGroup button {
+        margin-right: -20px;
+        right: 15px;
+        /* Adjust position of show/hide button */
+    }
+    .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btnPrimary {
+        margin-top: 10px;
+        background-color: #8387F5;
+        font-size: 18px;
+        color: #fff;
+    }
+    .btnOutlineSecondary {
+        height: 25px;
+        width: 50px;
+        font-size: 12px;
+        margin-left: 20px;
+        padding-left: 7px;
+        background-color: #8387F5;
+        border: 1px solid #8387F5;
+        color: #ffffff;
+    }
+}
