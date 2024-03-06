@@ -6,8 +6,9 @@ import './moderator.css';
 import UserModal from './UserModal';
 import ResourceModal from './ResourceModal';
 import ToastMessage from '../../Components/ToastMessage/ToastMessage';
- 
+
 function Moderator() {
+    const uid = sessionStorage.getItem('uid');
     const [selectedOption, setSelectedOption] = useState('Users');
     const [searchQuery, setSearchQuery] = useState('');
     const [userSearchResults, setUserSearchResults] = useState([]);
@@ -19,12 +20,11 @@ function Moderator() {
     const [showResourceModal, setShowResourceModal] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
- 
+
     useEffect(() => {
-        // Fetch users data when component mounts
         fetchUsers();
     }, []);
- 
+
     const fetchUsers = () => {
         fetch('http://127.0.0.1:5000/users')
             .then(response => response.json())
@@ -36,7 +36,7 @@ function Moderator() {
                 setError('Error fetching users');
             });
     };
- 
+
     const fetchResources = () => {
         fetch('http://127.0.0.1:5000/userresources')
             .then(response => response.json())
@@ -48,24 +48,24 @@ function Moderator() {
                 setError('Error fetching resources');
             });
     };
- 
+
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         setSearchQuery('');
         setError(null);
- 
+
         if (option === 'Users') {
             fetchUsers();
         } else if (option === 'Resources') {
             fetchResources();
         }
     };
- 
+
     const handleSearch = () => {
         setUserSearchResults([]);
         setResourceSearchResults([]);
         setError(null);
- 
+
         if (selectedOption === 'Users') {
             fetch(`http://127.0.0.1:5000/users?userName=${searchQuery}`)
                 .then(response => response.json())
@@ -96,69 +96,69 @@ function Moderator() {
                 });
         }
     };
- 
+
     const handleDeleteUser = (userId) => {
-      setSelectedUserId(userId);
-      setShowUserModal(true);
-  };
- 
-  const handleDeleteResource = (resourceId) => {
-      setSelectedResourceId(resourceId);
-      setShowResourceModal(true);
-  };
- 
-  const confirmDeleteUser = () => {
-      setShowUserModal(false);
-      // Delete user logic
-      fetch(`http://127.0.0.1:5000/users/${selectedUserId}`, {
-          method: 'DELETE'
-      })
-          .then(response => {
-              if (response.ok) {
-                  setUserSearchResults(prevUsers => prevUsers.filter(user => user.userid !== selectedUserId));
-                  setToastMessage('User deleted successfully');
-              } else {
-                  console.error('Failed to delete user');
-                  setError('Failed to delete user');
-              }
-          })
-          .catch(error => {
-              console.error('Error deleting user:', error);
-              setError('Error deleting user');
-          });
-  };
- 
-  const confirmDeleteResource = () => {
-      setShowResourceModal(false);
-      // Delete resource logic
-      fetch(`http://127.0.0.1:5000/delete/${selectedResourceId}`, {
-          method: 'DELETE'
-      })
-          .then(response => {
-              if (response.ok) {
-                  setResourceSearchResults(prevResources => prevResources.filter(resource => resource.resourceid !== selectedResourceId));
-                  setToastMessage('Resource deleted successfully');
-              } else {
-                  console.error('Failed to delete resource');
-                  setError('Failed to delete resource');
-              }
-          })
-          .catch(error => {
-              console.error('Error deleting resource:', error);
-              setError('Error deleting resource');
-          });
-  };
- 
-  const closeModal = () => {
-      setShowUserModal(false);
-      setShowResourceModal(false);
-  };
- 
+        setSelectedUserId(userId);
+        setShowUserModal(true);
+    };
+
+    const handleDeleteResource = (resourceId) => {
+        setSelectedResourceId(resourceId);
+        setShowResourceModal(true);
+    };
+
+    const confirmDeleteUser = () => {
+        setShowUserModal(false);
+        // Delete user logic
+        fetch(`http://127.0.0.1:5000/users/${selectedUserId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    setUserSearchResults(prevUsers => prevUsers.filter(user => user.userid !== selectedUserId));
+                    setToastMessage('User deleted successfully');
+                } else {
+                    console.error('Failed to delete user');
+                    setError('Failed to delete user');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting user:', error);
+                setError('Error deleting user');
+            });
+    };
+
+    const confirmDeleteResource = () => {
+        setShowResourceModal(false);
+        // Delete resource logic
+        fetch(`http://127.0.0.1:5000/delete/${selectedResourceId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    setResourceSearchResults(prevResources => prevResources.filter(resource => resource.resourceid !== selectedResourceId));
+                    setToastMessage('Resource deleted successfully');
+                } else {
+                    console.error('Failed to delete resource');
+                    setError('Failed to delete resource');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting resource:', error);
+                setError('Error deleting resource');
+            });
+    };
+
+    const closeModal = () => {
+        setShowUserModal(false);
+        setShowResourceModal(false);
+    };
+
     return (
         <div>
             <Header />
             <div className="container-mod">
-                <h1 className='title-mod'>Manage User and Resources</h1>
+            <h1 className='title-mod'>Manage User and Resources</h1>
                 <div className="options">
                     <button onClick={() => handleOptionClick('Users')} className={`btn-users ${selectedOption === 'Users' ? 'selected' : ''}`}>Users</button>
                     <button onClick={() => handleOptionClick('Resources')} className={`btn-resources ${selectedOption === 'Resources' ? 'selected' : ''}`}>Resources</button>
@@ -184,8 +184,9 @@ function Moderator() {
                                             <p>Email: {user.userEmail}</p>
                                             <p>Phone: {user.userPhno}</p>
                                         </div>
+                                        {user.userid != uid && (
                                         <a  onClick={() => handleDeleteUser(user.userid)}><FontAwesomeIcon icon={faTrash} className='trash-icon'/></a>
-                                        
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -224,6 +225,5 @@ function Moderator() {
         </div>
     );
 }
- 
+
 export default Moderator;
- 

@@ -6,22 +6,19 @@ import { faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import DeleteModal from './DeleteModal';
 import ToastMessage from '../../Components/ToastMessage/ToastMessage';
 
- 
- 
 function Upload() {
     const uid = sessionStorage.getItem('uid');
- 
     const [resourceName, setResourceName] = useState('');
     const [resources, setResources] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const [selectedResource, setSelectedResource] = useState(null); // Track the selected resource for deletion
+    const [selectedResource, setSelectedResource] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
- 
+
     useEffect(() => {
         fetchResources();
     }, []);
- 
+
     const fetchResources = async () => {
         try {
             const response = await fetch(`http://127.0.0.1:5000/userresources?userid=${uid}`);
@@ -38,12 +35,10 @@ function Upload() {
             setErrorMessage('An error occurred while fetching resources');
         }
     };
- 
+
     const handleSearch = async () => {
         try {
-            // Clear previous error message
             setErrorMessage('');
-            
             const response = await fetch(`http://127.0.0.1:5000/userresources?userid=${uid}&resourceName=${resourceName}`);
             const data = await response.json();
             if (Array.isArray(data.response) && data.response.length > 0) {
@@ -56,38 +51,34 @@ function Upload() {
             console.error('Error searching for resources:', error);
         }
     };
- 
+
     const handleDelete = (resourceId) => {
-        setSelectedResource(resourceId); // Set the selected resource for deletion
-        setShowModal(true); // Show the modal
+        setSelectedResource(resourceId);
+        setShowModal(true);
     };
- 
+
     const confirmDelete = async () => {
         try {
-            // Close the modal
             setShowModal(false);
-            // Make DELETE request to delete the resource
             await fetch(`http://127.0.0.1:5000/delete/${selectedResource}`, {
                 method: 'DELETE'
             });
-            // Filter out the deleted resource from the resources state
             setResources(prevResources => prevResources.filter(resource => resource.resourceid !== selectedResource));
-            // Display toast message for successful deletion
             setToastMessage('Resource deleted successfully');
         } catch (error) {
             console.error('Error deleting resource:', error);
         }
     };
- 
+
     const closeModal = () => {
-        setShowModal(false); // Close the modal
+        setShowModal(false);
     };
- 
+
     return (
         <div>
             <Header/>
             <div className="my-upload-container">
-                <h3 className='title-up'>My Uploads</h3>
+            <h3 className='title-up'>My Uploads</h3>
                 <div className="search-container-up">
                     <div className='search-bar-up'>
                         <input
@@ -131,6 +122,5 @@ function Upload() {
         </div>
     );
 }
- 
+
 export default Upload;
- 

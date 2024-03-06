@@ -4,7 +4,7 @@ import Styles from './login.module.css'; // Import CSS file for custom styling
 import login from '../../Assets/login.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
- 
+
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -68,7 +68,7 @@ const handleSignup = async (e) => {
               const roleIndex = data.roleIndex;
               sessionStorage.setItem('uid',uid);
               sessionStorage.setItem('roleIndex',roleIndex);
-              window.location.href = `/home`; // Redirect to home page if signup is successful
+              window.location.href = `/`; // Redirect to home page if signup is successful
           } else {
               setResponseMessage(data.response); // Set response message from JSON response
           }

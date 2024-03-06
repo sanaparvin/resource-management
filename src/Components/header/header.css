@@ -71,14 +71,11 @@ body {
     left: 0;
     margin-top: 90px;
     height: 100%;
-    /* Make the side nav bar full height */
     width: 230px;
-    /* Adjust the width as needed */
     background-color: #ffffff;
     padding: 20px;
     z-index: 1;
     overflow-y: auto;
-    /* Enable scrolling if content overflows */
 }
 
 .side-nav ul {
@@ -232,12 +229,10 @@ body {
     line-height: 20px;
     border-radius: 4px;
     width: 0;
-    /* Initial width of the progress bar */
 }
 
 .toggle-icon {
     display: none;
-    /* Initially hide the toggle icon */
     margin-right: 30px;
     font-size: 24px;
     color: white;
@@ -247,14 +242,12 @@ body {
 @media screen and (max-width: 768px) {
     .toggle-icon {
         display: block;
-        /* Show the toggle icon */
         padding: 20px;
     }
     .side-nav {
         position: fixed;
         top: 0;
         left: -270px;
-        /* Initially hide the side nav */
         width: 230px;
         height: 100%;
         background-color: #ffffff;
@@ -262,11 +255,9 @@ body {
         z-index: 1;
         overflow-y: auto;
         transition: left 0.3s ease;
-        /* Add transition effect */
     }
     .side-nav.open {
         left: 0;
-        /* Show the side nav when open */
     }
     .home-icon {
         width: 150px;

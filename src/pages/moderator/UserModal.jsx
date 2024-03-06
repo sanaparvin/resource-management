@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const UserModal = ({ confirmDelete, closeModal }) => {
     return (
         <div className="modal">
@@ -13,6 +13,5 @@ const UserModal = ({ confirmDelete, closeModal }) => {
         </div>
     );
 };
- 
+
 export default UserModal;
- 

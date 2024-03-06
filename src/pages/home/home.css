@@ -25,7 +25,6 @@
 }
 
 .search-header {
-    /* opacity: none; */
     margin-left: 200px;
 }
 
@@ -60,7 +59,6 @@
 .search-bar input[type="text"]::placeholder {
     color: #000000;
     font-size: 20px;
-    /* Placeholder text color */
 }
 
 .search-form input:hover {
@@ -106,7 +104,7 @@
     border-radius: 5px;
     background-color: #ffffff;
     color: #000000;
-    width: 70px;
+    width: 78px;
     height: 33px;
 }
 
@@ -131,17 +129,13 @@
 
 .reset-filter .reset-icon {
     font-size: 1.2rem;
-    /* Adjust the icon size */
     color: #333;
-    /* Set the icon color */
     cursor: pointer;
-    /* Change cursor to pointer on hover */
     padding-left: 40px;
 }
 
 .reset-filter .reset-icon:hover {
     color: #666;
-    /* Change color on hover */
 }
 
 .date-picker {
@@ -173,26 +167,20 @@
 
 .react-datepicker__header {
     background-color: #c1d8f8;
-    /* Header background color */
     color: #000000;
-    /* Header text color */
 }
 
 .react-datepicker__day {
     color: #000000;
-    /* Day text color */
 }
 
 .react-datepicker__day--selected {
     background-color: #c1d8f8;
-    /* Selected date background color */
     color: #000000;
-    /* Selected date text color */
 }
 
 .react-datepicker__day:hover {
     background-color: #f0f0f0;
-    /* Day background color on hover */
 }
 
 .filters {
@@ -202,15 +190,12 @@
     gap: 20px;
 }
 
-
-/* ResourceItem.css */
-
 .popular-resources {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-left: 460px;
+    margin-left: 500px;
     overflow-wrap: break-word;
     font-size: 15px;
     gap: 30px;
@@ -286,12 +271,10 @@ h2 {
     position: relative;
     padding-left: 20px;
     visibility: visible;
-    /* Show card title initially */
 }
 
 .card-text {
     display: none;
-    /* Hide card text initially */
     font-size: 15px;
     margin-bottom: 5px;
     padding-left: 20px;
@@ -299,14 +282,12 @@ h2 {
 
 .card-body:hover .card-text {
     display: block;
-    /* Show card text on hover */
     font-size: 15px;
     margin-bottom: 5px;
 }
 
 .card-body:hover .card-title {
     visibility: visible;
-    /* Ensure card title is visible on hover */
 }
 
 .card-body a {
@@ -448,11 +429,8 @@ h2 {
     }
     .reset-filter .reset-icon {
         font-size: 1.2rem;
-        /* Adjust the icon size */
         color: #333;
-        /* Set the icon color */
         cursor: pointer;
-        /* Change cursor to pointer on hover */
         padding-left: 30px;
         margin-top: 20px;
     }

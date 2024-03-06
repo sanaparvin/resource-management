@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const DeleteModal = ({ confirmDelete, closeModal }) => {
     return (
         <div className="modal">
@@ -13,5 +13,5 @@ const DeleteModal = ({ confirmDelete, closeModal }) => {
         </div>
     );
 };
- 
+
 export default DeleteModal;

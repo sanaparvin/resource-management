@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const LogoutModal = ({ confirmLogout, closeModal }) => {
     return (
         <div className="modal">
@@ -13,6 +13,5 @@ const LogoutModal = ({ confirmLogout, closeModal }) => {
         </div>
     );
 };
- 
+
 export default LogoutModal;
- 

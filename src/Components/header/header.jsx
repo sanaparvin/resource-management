@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import LogoutModal from './LogoutModal';
 import logo from '../../Assets/learnhublogo.png';
 import ToastMessage from '../ToastMessage/ToastMessage';
- 
+
 const Header = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const navigate = useNavigate();
@@ -20,28 +20,28 @@ const Header = () => {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [toastMessage, setToastMessage] = useState('');
- 
- 
- 
-  // Function to handle file selection
+
+
+
+    // Function to handle file selection
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
-    
+
     // Function to handle file upload
     const handleUploadSubmit = async (event) => {
         event.preventDefault();
-    
+
         if (!selectedFile) {
             setToastMessage("Please select a file to upload.");
             return;
         }
-    
+
         const formData = new FormData();
         formData.append("file", selectedFile);
         formData.append("userid", uid);
         formData.append("uploadFile", selectedFile);
-    
+
         try {
             setLoading(true);
             const response = await axios.post(
@@ -57,59 +57,61 @@ const Header = () => {
                     },
                 }
             );
-    
+
             console.log("Upload successful:", response.data);
             setToastMessage("Resource uploaded successfully!");
             setShowUploadModal(false);
-        } catch (error) {
+        }
+        catch (error) {
             console.error("Error uploading file:", error);
             setToastMessage("Error uploading file. Please try again.");
-        } finally {
+        }
+        finally {
             setLoading(false);
             setShowUploadModal(false);
-            setUploadProgress(0); // Reset progress bar
+            setUploadProgress(0);
         }
     };
- 
+
     const openModal = () => {
-        setSelectedFile(null); // Clear the selected file when opening the modal
+        setSelectedFile(null);
         setShowUploadModal(true);
     };
- 
+
     const handleLogout = () => {
-        setShowModal(true); // Show the logout modal
+        setShowModal(true);
     };
- 
+
     const confirmLogout = () => {
         sessionStorage.clear();
         navigate('/');
     };
- 
+
     const toggleSideNav = () => {
         setIsSideNavOpen(!isSideNavOpen);
     };
- 
+
     const handleCloseToast = () => {
-        setToastMessage(''); // Clear the toast message
+        setToastMessage('');
     };
- 
- 
+
+
 return (
- 
     <header className="header">
         <div className="logo">
         <a href={`/home`}>
-          <img src={logo} className='home-icon' />
+            <img src={logo} className='home-icon' />
         </a>
         </div>
         <div className="toggle-icon" onClick={toggleSideNav}>
             <FontAwesomeIcon icon={isSideNavOpen ? faTimes : faBars} className='bars-icon' />
         </div>
         <div className={`side-nav ${isSideNavOpen ? 'open' : ''}`}>
+
             {/* Upload Section */}
             <div className="upload-section">
                 <div className="uploads">
-                <div className="upload-part">
+                <div className="upload-part" title='upload files'>
                     <label htmlFor="file-input" onClick={openModal}>
                     <FontAwesomeIcon icon={faPlus} className='upload-icon' />
                     </label>
@@ -182,9 +184,9 @@ return (
             )}
             {toastMessage && <ToastMessage message={toastMessage} onClose={handleCloseToast} />}
     </header>
-    
-      
+
+
     );
 };
- 
+
 export default Header;

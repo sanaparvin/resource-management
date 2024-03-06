@@ -1,17 +1,15 @@
-// ToastMessage.jsx
- 
 import React, { useEffect } from 'react';
-import './ToastMessage.css'; // Import CSS file for styling
- 
+import './ToastMessage.css';
+
 const ToastMessage = ({ message, onClose }) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             onClose();
-        }, 3000); // Auto-dismiss after 3 seconds
- 
+        }, 3000);
+
         return () => clearTimeout(timeout);
     }, [onClose]);
- 
+
     return (
         <div className="toast">
             <p>{message}</p>
@@ -19,5 +17,5 @@ const ToastMessage = ({ message, onClose }) => {
         </div>
     );
 };
- 
+
 export default ToastMessage;

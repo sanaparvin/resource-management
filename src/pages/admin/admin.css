@@ -1,5 +1,3 @@
-/* Admin.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 .container-ad {
     margin-right: 5%;
@@ -35,7 +33,6 @@
 .search-bar-ad input[type="text"]::placeholder {
     color: #000000;
     font-size: 20px;
-    /* Placeholder text color */
 }
 
 .search-container-ad input[type="text"] {
@@ -72,9 +69,6 @@
 .search-container-ad button:hover {
     color: #8387F5;
 }
-
-
-/* User card styles */
 
 .user-cards {
     gap: 30px;
@@ -176,7 +170,6 @@
     transform: translateX(26px);
     content: "M";
     background-color: white;
-    /* Color for Moderator */
     color: #000000;
 }
 
@@ -190,23 +183,19 @@
     .container-ad {
         margin-right: 5%;
         margin-left: 5%;
-        /* Adjust margins for smaller screens */
         margin-top: 7%;
     }
     .admin-title {
         font-size: 30px;
         margin-top: 130px;
         margin-right: 60px;
-        /* Decrease title font size for smaller screens */
     }
     .search-container-ad input[type="text"] {
         width: 100%;
-        /* Make search input full width */
     }
     .user-cards {
         margin-left: 35px;
         margin-top: -30px;
-        /* Adjust margin for smaller screens */
     }
     .user-card {
         background-image: url(../../Assets/profile-resp.png);
@@ -229,11 +218,9 @@
     }
     .slider {
         bottom: -10px;
-        /* Adjust slider position for smaller screens */
     }
     .user-info {
         margin-left: 20px;
-        /* Adjust margin for smaller screens */
     }
     .user-card label.switch .slider {
         position: absolute;
@@ -249,10 +236,8 @@
     }
     .user-card label.switch .slider:before {
         left: 2px;
-        /* Adjust slider knob position for smaller screens */
         bottom: 2px;
         width: 30px;
         height: 30px;
-        /* Adjust slider knob position for smaller screens */
     }
 }

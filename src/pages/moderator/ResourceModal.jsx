@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const ResourceModal = ({ confirmDelete, closeModal }) => {
     return (
         <div className="modal">
@@ -13,6 +13,5 @@ const ResourceModal = ({ confirmDelete, closeModal }) => {
         </div>
     );
 };
- 
+
 export default ResourceModal;
- 
